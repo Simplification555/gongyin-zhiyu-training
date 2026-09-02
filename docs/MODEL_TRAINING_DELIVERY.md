@@ -65,7 +65,7 @@ M5 Hard DPO
 M6 Quantized release
 ```
 
-M1/M2/M3 适配器由 Git LFS 管理。克隆后执行 `git lfs install` 和 `git lfs pull`，并将 `QWEN3_8B_PATH` 设置为本地 Qwen3-8B 基座目录。
+M1 适配器已由 Git LFS 管理。克隆后执行 `git lfs install` 和 `git lfs pull`，并将 `QWEN3_8B_PATH` 设置为本地 Qwen3-8B 基座目录。M2/M3 已在本机完成 SHA-256 校验和 release manifest 记录；在其权重进入 LFS 前，不能将它们表述为远程可直接拉取的模型交付。
 
 每个阶段必须保留训练日志、评估结果、配置快照和 SHA-256。不要覆盖 M1。
 
