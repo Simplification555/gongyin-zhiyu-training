@@ -19,7 +19,7 @@
 
 ## MMLU-57x10 controlled subset 外部对比实验
 
-这是 controlled external comparison，不是完整 MMLU，也不是 formal result。共 6 个 seed，每个 seed 使用 57 个 subject、每个 subject 10 道测试题（570 题）；搜索集为每 subject 5 题（285 题）。完整逐条输出、调用记录、结果 JSON、汇总 CSV 和运行 manifest 位于 `outputs/external_comparison/ec2_gpu6/`。
+这是 controlled external comparison，不是完整 MMLU，也不是 formal result。共 6 个 seed，每个 seed 使用 57 个 subject、每个 subject 10 道测试题（570 题）；搜索集为每 subject 5 题（285 题）。完整逐条输出、调用记录、结果 JSON、汇总 CSV 和运行 manifest 位于 `results/external_comparison/ec2_gpu6/`。
 
 RPAS 在本次配置中仅执行 9 个预定义候选架构的 controlled candidate selection；`RPAS_MMLU_NEW_CANDIDATES=0`，没有新增 reflective mutation search。三个 RPAS seed 使用确定性解码和相同候选集合，因此结果相同属于预期现象。
 
