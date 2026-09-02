@@ -1,0 +1,10 @@
+*.pyc
+__pycache__/
+.venv/
+wandb/
+models/**/checkpoints/
+models/**/model/
+*.safetensors
+*.bin
+*.pt
+*.joblib

@@ -1,0 +1,29 @@
+{
+  "schema": "gongyin_zhiyu.a100_training_manifest.v1",
+  "seed": 20260831,
+  "do_not_eval": true,
+  "datasets": {
+    "guard_lite": {
+      "train": 5396,
+      "dev": 604
+    },
+    "reranker": {
+      "train": 9062,
+      "dev": 938
+    },
+    "product_nli": {
+      "train": 2663,
+      "dev": 337
+    },
+    "reasoner": {
+      "grounded": 10794,
+      "complex": 5160,
+      "temporal": 1402,
+      "trajectory": 3500,
+      "chaos": 2160,
+      "train": 20715,
+      "dev": 2301,
+      "total": 23016
+    }
+  }
+}
