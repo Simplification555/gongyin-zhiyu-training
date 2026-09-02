@@ -1,0 +1,23 @@
+{
+  "model_name": "models/macbert-base-safetensors",
+  "threshold": 0.5,
+  "train_size": 5396,
+  "dev_size": 604,
+  "blind_test_size": 0,
+  "dev": {
+    "eval_loss": 0.09248489141464233,
+    "eval_micro_f1": 1.0,
+    "eval_macro_f1": 1.0,
+    "eval_micro_precision": 1.0,
+    "eval_macro_precision": 1.0,
+    "eval_micro_recall": 1.0,
+    "eval_macro_recall": 1.0,
+    "eval_high_risk_recall": 1.0,
+    "eval_exact_match": 1.0,
+    "eval_runtime": 0.2251,
+    "eval_samples_per_second": 2682.771,
+    "eval_steps_per_second": 84.392,
+    "epoch": 4.0
+  },
+  "blind_test": {}
+}
