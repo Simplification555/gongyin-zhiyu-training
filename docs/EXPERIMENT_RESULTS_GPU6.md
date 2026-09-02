@@ -2,7 +2,7 @@
 
 更新日期：2026-09-02
 
-本次运行只使用 NVIDIA A100-SXM4-80GB 物理 GPU 6（`CUDA_VISIBLE_DEVICES=6`）。GPU 7 未启动、未用于计算，实验结束后 GPU 6/7 均为 0 MiB 显存占用。
+正式保留的训练与实验结果均只使用 NVIDIA A100-SXM4-80GB 物理 GPU 6（`CUDA_VISIBLE_DEVICES=6`）。审计期间发现一个误启动的 GPU 7 后台任务，已立即停止且不纳入任何结果；当前 GPU 6/7 均为 0 MiB 显存占用。
 
 ## 银行智能体训练结果
 

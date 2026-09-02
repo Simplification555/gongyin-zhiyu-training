@@ -24,6 +24,6 @@ pip install datasets accelerate scikit-learn sentencepiece llamafactory
 3. `./scripts/run_a100_training.ps1 nli`，三分类标签为 SUPPORTED/CONTRADICTED/UNKNOWN；`data/evaluation/gyz_product_nli_v1.jsonl` 是银标/评测边界，不能当正式 Gold。
 4. `./scripts/run_a100_training.ps1 reasoner`，先保存 M1 SFT，再单独做 trajectory、chaos policy 和 hard DPO checkpoint。
 
-Guard/Reranker 使用 BF16 batch 32。Reasoner-8B 使用 BF16 LoRA、per-device batch size 4、gradient accumulation 8、effective batch size 32、4096 context，并关闭 gradient checkpointing；显存不足时再切 QLoRA NF4。Reasoner 训练固定使用物理 GPU 6。
+Guard/Reranker 使用 BF16 batch 32。Reasoner-8B 使用 BF16 LoRA、per-device batch size 4、gradient accumulation 8、effective batch size 32、4096 context，并关闭 gradient checkpointing；显存不足时再切 QLoRA NF4。Reasoner 训练固定使用物理 GPU 6。EC-2 主表与逐项审查记录见 `docs/EXPERIMENT_AUDIT_GPU6.md`；Reasoner 直接训练请使用 `scripts/run_reasoner_gpu6.sh`，该 wrapper 会拒绝任何非 GPU 6 的设置。
 
 每个 checkpoint 都必须记录 GYZ dev/public、专项安全子集、CFR、Evidence Recall、Temporal Leakage、HITL Recall、ECE 和 P95 延迟。Hidden 只在候选冻结后运行一次。

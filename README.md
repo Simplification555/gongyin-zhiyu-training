@@ -25,7 +25,7 @@ pip install datasets accelerate scikit-learn sentencepiece llamafactory
 
 See [docs/A100_TRAINING_RUNBOOK.md](docs/A100_TRAINING_RUNBOOK.md) for the recommended order and release boundaries.
 
-Reasoner configs use `QWEN3_8B_PATH` for the local Qwen3-8B base model. Before loading the published LoRA adapter, run `git lfs install` and `git lfs pull`. All GPU training commands are pinned to physical GPU 6 (`CUDA_VISIBLE_DEVICES=6`); GPU 7 is not used.
+Reasoner configs use `QWEN3_8B_PATH` for the local Qwen3-8B base model. Before loading the published LoRA adapter, run `git lfs install` and `git lfs pull`. Use `scripts/run_reasoner_gpu6.sh` or the PowerShell wrapper; both hard-pin training to physical GPU 6 (`CUDA_VISIBLE_DEVICES=6`) and refuse other device values.
 
 ## Evaluation boundary
 
