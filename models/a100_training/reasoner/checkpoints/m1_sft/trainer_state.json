@@ -1,7 +1,7 @@
 {
   "best_global_step": 500,
   "best_metric": 0.6062836647033691,
-  "best_model_checkpoint": "/mnt/cpfs/epic-user/niutianle-20260612/gongyin-zhiyu-training/models/a100_training/reasoner/checkpoints/m1_sft/checkpoint-500",
+  "best_model_checkpoint": "models/a100_training/reasoner/checkpoints/m1_sft/checkpoint-500",
   "epoch": 1.0,
   "eval_steps": 250,
   "global_step": 720,
