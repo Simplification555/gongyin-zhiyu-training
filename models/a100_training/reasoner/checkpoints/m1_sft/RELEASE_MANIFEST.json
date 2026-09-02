@@ -1,0 +1,15 @@
+{
+  "artifact": "m1_sft",
+  "artifact_type": "PEFT LoRA adapter",
+  "base_model": "Qwen/Qwen3-8B",
+  "training_dataset": "a100_reasoner",
+  "training_device": "physical GPU 6 (NVIDIA A100-SXM4-80GB)",
+  "training_steps": 720,
+  "epochs": 1.0,
+  "train_runtime_seconds": 1904.311,
+  "train_loss": 0.7357495493359036,
+  "best_checkpoint_step": 500,
+  "best_eval_loss": 0.6062836647033691,
+  "adapter_sha256": "bb36a1820081774c03000e089167310aab9a7e3873beb22ad18e19347dd16b14",
+  "notes": "Final adapter directory only; optimizer state and intermediate checkpoints are intentionally omitted."
+}
