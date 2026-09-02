@@ -12,8 +12,8 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_DATA = ROOT / "models" / "regulation_reranker" / "data" / "regulation_reranker_pairs.jsonl"
-DEFAULT_OUT = ROOT / "models" / "regulation_reranker" / "cross_encoder"
+DEFAULT_DATA = ROOT / "models" / "a100_training" / "reranker" / "all.jsonl"
+DEFAULT_OUT = ROOT / "models" / "a100_training" / "reranker" / "model"
 
 
 def read_jsonl(path: Path) -> list[dict[str, Any]]:
@@ -65,7 +65,7 @@ def main() -> None:
 
     rows = read_jsonl(args.data)
     train_rows = [row for row in rows if row.get("split") == "train"]
-    dev_rows = [row for row in rows if row.get("split") == "dev"]
+    dev_rows = [row for row in rows if row.get("split") in {"dev", "validation"}]
     test_rows = [row for row in rows if row.get("split") == "blind_test"]
     tokenizer = AutoTokenizer.from_pretrained(args.model_name)
 
@@ -76,7 +76,10 @@ def main() -> None:
 
     train_ds = Dataset.from_list(train_rows).map(tokenize, batched=True, remove_columns=list(train_rows[0].keys()))
     dev_ds = Dataset.from_list(dev_rows).map(tokenize, batched=True, remove_columns=list(dev_rows[0].keys()))
-    test_ds = Dataset.from_list(test_rows).map(tokenize, batched=True, remove_columns=list(test_rows[0].keys()))
+    test_ds = (
+        Dataset.from_list(test_rows).map(tokenize, batched=True, remove_columns=list(test_rows[0].keys()))
+        if test_rows else None
+    )
 
     model = AutoModelForSequenceClassification.from_pretrained(args.model_name, num_labels=2)
     collator = DataCollatorWithPadding(tokenizer=tokenizer)
@@ -107,7 +110,8 @@ def main() -> None:
         greater_is_better=True,
         logging_steps=20,
         report_to=[],
-        fp16=torch.cuda.is_available(),
+        bf16=torch.cuda.is_available() and torch.cuda.is_bf16_supported(),
+        fp16=torch.cuda.is_available() and not torch.cuda.is_bf16_supported(),
         seed=args.seed,
     )
     trainer_kwargs = {
@@ -126,7 +130,7 @@ def main() -> None:
     trainer = Trainer(**trainer_kwargs)
     trainer.train()
     dev_metrics = trainer.evaluate(dev_ds)
-    test_metrics = trainer.evaluate(test_ds) if test_rows else {}
+    test_metrics = trainer.evaluate(test_ds) if test_ds is not None else {}
 
     predictions = trainer.predict(test_ds) if test_rows else None
     if predictions is not None:

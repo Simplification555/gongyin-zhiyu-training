@@ -1,0 +1,18 @@
+{
+  "model_name": "models/macbert-base-safetensors",
+  "train_size": 9062,
+  "dev_size": 938,
+  "blind_test_size": 0,
+  "dev": {
+    "eval_loss": 0.0001324671902693808,
+    "eval_accuracy": 1.0,
+    "eval_precision": 1.0,
+    "eval_recall": 1.0,
+    "eval_f1": 1.0,
+    "eval_runtime": 0.4158,
+    "eval_samples_per_second": 2255.749,
+    "eval_steps_per_second": 72.146,
+    "epoch": 3.0
+  },
+  "blind_test": {}
+}

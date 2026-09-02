@@ -1,0 +1,20 @@
+{
+  "labels": [
+    "SUPPORTED",
+    "CONTRADICTED",
+    "UNKNOWN"
+  ],
+  "train": 2663,
+  "dev": 337,
+  "metrics": {
+    "eval_loss": 0.0021566736977547407,
+    "eval_accuracy": 1.0,
+    "eval_macro_f1": 1.0,
+    "eval_contradicted_recall": 1.0,
+    "eval_unknown_precision": 1.0,
+    "eval_runtime": 0.1495,
+    "eval_samples_per_second": 2254.869,
+    "eval_steps_per_second": 73.601,
+    "epoch": 3.0
+  }
+}

@@ -1,0 +1,3 @@
+2bb2666b8d77856c3809fb0caa14f3ed1ed30f586fc08f839309111573ddaff1  gongyin-zhiyu-training/models/a100_training/guard_lite/model/best_model/model.safetensors
+45fdb014e6bb18782c6b71880c8f2264adddf135d23cc29bb3239aceacad3f45  gongyin-zhiyu-training/models/a100_training/reranker/model/best_model/model.safetensors
+460020405457f0a6cfe8a5ba34ce878a0a8f8877341c91acc850c8eac23ecf59  gongyin-zhiyu-training/models/a100_training/product_nli/model/best_model/model.safetensors

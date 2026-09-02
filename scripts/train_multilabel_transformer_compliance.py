@@ -11,9 +11,9 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_DATA = ROOT / "models" / "compliance_classifier" / "data" / "multilabel_compliance.jsonl"
-DEFAULT_LABELS = ROOT / "models" / "compliance_classifier" / "data" / "multilabel_label_names.json"
-DEFAULT_OUT = ROOT / "models" / "compliance_classifier" / "transformer_multilabel"
+DEFAULT_DATA = ROOT / "models" / "a100_training" / "guard_lite" / "all.jsonl"
+DEFAULT_LABELS = ROOT / "models" / "a100_training" / "guard_lite" / "label_names.json"
+DEFAULT_OUT = ROOT / "models" / "a100_training" / "guard_lite" / "model"
 
 HIGH_RISK = {
     "suitability_mismatch",
@@ -61,10 +61,13 @@ def main() -> None:
     parser.add_argument("--seed", type=int, default=20260715)
     args = parser.parse_args()
 
-    label_names = json.loads(args.labels.read_text(encoding="utf-8"))
     rows = read_jsonl(args.data)
+    if args.labels.exists():
+        label_names = json.loads(args.labels.read_text(encoding="utf-8"))
+    else:
+        label_names = sorted({label for row in rows for label in row.get("labels", [])})
     train_rows = [row for row in rows if row.get("split") == "train"]
-    dev_rows = [row for row in rows if row.get("split") == "dev"]
+    dev_rows = [row for row in rows if row.get("split") in {"dev", "validation"}]
     test_rows = [row for row in rows if row.get("split") == "blind_test"]
     if not train_rows or not dev_rows:
         raise SystemExit("Need train/dev splits. Run prepare_multilabel_compliance_dataset.py first.")
@@ -73,12 +76,17 @@ def main() -> None:
 
     def tokenize(batch: dict[str, list[Any]]) -> dict[str, Any]:
         encoded = tokenizer(batch["text"], truncation=True, max_length=args.max_length)
-        encoded["labels"] = [[float(x) for x in labels] for labels in batch["labels"]]
+        encoded["labels"] = [
+            [float(label in labels) for label in label_names] for labels in batch["labels"]
+        ]
         return encoded
 
     train_ds = Dataset.from_list(train_rows).map(tokenize, batched=True, remove_columns=list(train_rows[0].keys()))
     dev_ds = Dataset.from_list(dev_rows).map(tokenize, batched=True, remove_columns=list(dev_rows[0].keys()))
-    test_ds = Dataset.from_list(test_rows).map(tokenize, batched=True, remove_columns=list(test_rows[0].keys()))
+    test_ds = (
+        Dataset.from_list(test_rows).map(tokenize, batched=True, remove_columns=list(test_rows[0].keys()))
+        if test_rows else None
+    )
 
     model = AutoModelForSequenceClassification.from_pretrained(
         args.model_name,
@@ -130,7 +138,8 @@ def main() -> None:
         greater_is_better=True,
         logging_steps=20,
         report_to=[],
-        fp16=torch.cuda.is_available(),
+        bf16=torch.cuda.is_available() and torch.cuda.is_bf16_supported(),
+        fp16=torch.cuda.is_available() and not torch.cuda.is_bf16_supported(),
         seed=args.seed,
     )
 
@@ -150,7 +159,7 @@ def main() -> None:
     trainer = Trainer(**trainer_kwargs)
     trainer.train()
     dev_metrics = trainer.evaluate(dev_ds)
-    test_metrics = trainer.evaluate(test_ds) if len(test_rows) else {}
+    test_metrics = trainer.evaluate(test_ds) if test_ds is not None else {}
 
     args.out_dir.mkdir(parents=True, exist_ok=True)
     best_dir = args.out_dir / "best_model"
