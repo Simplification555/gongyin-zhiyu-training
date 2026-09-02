@@ -1,0 +1,12 @@
+{
+  "artifact": "m3_trajectory_sft",
+  "artifact_type": "PEFT LoRA adapter",
+  "base_model": "Qwen/Qwen3-8B",
+  "training_dataset": "a100_reasoner_m3_trajectory",
+  "training_device": "physical GPU 6 (NVIDIA A100-SXM4-80GB)",
+  "epochs": 1.0,
+  "train_loss": 2.844307369656033,
+  "eval_loss": 2.8789141178131104,
+  "adapter_sha256": "f5b3324d6e1fda0366c86261f6fe84419a0db6550c8635c9fd942114b62b8ef9",
+  "notes": "Synthetic/silver training asset; not a benchmark or production result."
+}

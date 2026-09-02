@@ -1,0 +1,15 @@
+{
+  "schema": "gongyin_zhiyu.reasoner_stages.v1",
+  "stages": {
+    "m2_complex": {
+      "train": 4614,
+      "dev": 546,
+      "total": 5160
+    },
+    "m3_trajectory": {
+      "train": 3156,
+      "dev": 344,
+      "total": 3500
+    }
+  }
+}

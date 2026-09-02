@@ -36,7 +36,7 @@ def prepare_reranker() -> dict[str,int]:
     def convert(rows):
         out=[]
         for r in rows:
-            common={"id":r.get("id"),"query":r.get("query",""),"source_id":r.get("source_id"),"split":r.get("split","train"),"do_not_eval":True}
+            common={"id":r.get("id"),"case_id":r.get("case_id", r.get("id")),"query":r.get("query",""),"source_id":r.get("source_id"),"split":r.get("split","train"),"do_not_eval":True}
             out += [{**common,"passage":r.get("positive_text",""),"label":1},{**common,"passage":r.get("negative_text",""),"label":0}]
         return out
     tr, dv = convert(read_jsonl(p/"regulation_reranker_pairs_train.jsonl")), convert(read_jsonl(p/"regulation_reranker_pairs_validation.jsonl"))

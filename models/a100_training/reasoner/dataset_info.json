@@ -10,5 +10,29 @@
     "formatting": "sharegpt",
     "columns": {"messages": "messages"},
     "tags": {"role_tag": "role", "content_tag": "content", "user_tag": "user", "assistant_tag": "assistant", "system_tag": "system"}
+  },
+  "a100_reasoner_m2_complex": {
+    "file_name": "m2_complex/train.jsonl",
+    "formatting": "sharegpt",
+    "columns": {"messages": "messages"},
+    "tags": {"role_tag": "role", "content_tag": "content", "user_tag": "user", "assistant_tag": "assistant", "system_tag": "system"}
+  },
+  "a100_reasoner_m2_complex_dev": {
+    "file_name": "m2_complex/dev.jsonl",
+    "formatting": "sharegpt",
+    "columns": {"messages": "messages"},
+    "tags": {"role_tag": "role", "content_tag": "content", "user_tag": "user", "assistant_tag": "assistant", "system_tag": "system"}
+  },
+  "a100_reasoner_m3_trajectory": {
+    "file_name": "m3_trajectory/train.jsonl",
+    "formatting": "sharegpt",
+    "columns": {"messages": "messages"},
+    "tags": {"role_tag": "role", "content_tag": "content", "user_tag": "user", "assistant_tag": "assistant", "system_tag": "system"}
+  },
+  "a100_reasoner_m3_trajectory_dev": {
+    "file_name": "m3_trajectory/dev.jsonl",
+    "formatting": "sharegpt",
+    "columns": {"messages": "messages"},
+    "tags": {"role_tag": "role", "content_tag": "content", "user_tag": "user", "assistant_tag": "assistant", "system_tag": "system"}
   }
 }
