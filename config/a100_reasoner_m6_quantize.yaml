@@ -1,0 +1,8 @@
+base_model: Qwen/Qwen3-8B
+adapter_path: models/a100_training/reasoner/checkpoints/m5_hard_dpo
+output_dir: models/a100_training/reasoner/checkpoints/m6_quantized
+quantization: 4bit_nf4
+compute_dtype: bfloat16
+device: cuda:0
+merge_adapter: false
+save_tokenizer: true
