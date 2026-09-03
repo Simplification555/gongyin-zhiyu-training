@@ -1,0 +1,11 @@
+{
+  "a100_hard_dpo": {
+    "file_name": "all.jsonl",
+    "formatting": "sharegpt",
+    "columns": {
+      "prompt": "prompt",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  }
+}
