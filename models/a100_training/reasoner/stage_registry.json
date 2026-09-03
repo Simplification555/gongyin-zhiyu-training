@@ -1,0 +1,13 @@
+{
+  "schema": "gongyin_zhiyu.reasoner_stage_registry.v1",
+  "base_model": "Qwen/Qwen3-8B",
+  "stages": {
+    "m1_sft": {"status": "DELIVERED", "path": "checkpoints/m1_sft"},
+    "m2_complex_sft": {"status": "DELIVERED", "path": "checkpoints/m2_complex_sft"},
+    "m3_trajectory_sft": {"status": "DELIVERED", "path": "checkpoints/m3_trajectory_sft"},
+    "m4_chaos_policy": {"status": "DELIVERED", "path": "checkpoints/m4_chaos_policy_gpu7"},
+    "m5_hard_dpo": {"status": "READY_TO_TRAIN", "path": "checkpoints/m5_hard_dpo", "config": "config/a100_reasoner_m5_hard_dpo_lora.yaml"},
+    "m6_quantized": {"status": "READY_TO_EXPORT", "path": "checkpoints/m6_quantized", "config": "config/a100_reasoner_m6_quantize.yaml"}
+  },
+  "release_policy": "M5/M6 are not delivered model weights until training/export artifacts and independent release-gate metrics exist."
+}
