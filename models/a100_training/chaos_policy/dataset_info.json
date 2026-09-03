@@ -1,6 +1,20 @@
 {
   "a100_chaos_policy": {
-    "file_name": "all.jsonl",
+    "file_name": "train.jsonl",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "messages"
+    },
+    "tags": {
+      "role_tag": "role",
+      "content_tag": "content",
+      "user_tag": "user",
+      "assistant_tag": "assistant",
+      "system_tag": "system"
+    }
+  },
+  "a100_chaos_policy_dev": {
+    "file_name": "dev.jsonl",
     "formatting": "sharegpt",
     "columns": {
       "messages": "messages"

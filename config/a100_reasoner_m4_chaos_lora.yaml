@@ -8,6 +8,7 @@ lora_rank: 32
 lora_alpha: 64
 dataset: a100_chaos_policy
 dataset_dir: models/a100_training/chaos_policy
+eval_dataset: a100_chaos_policy_dev
 template: qwen3
 cutoff_len: 2048
 output_dir: models/a100_training/reasoner/checkpoints/m4_chaos_policy

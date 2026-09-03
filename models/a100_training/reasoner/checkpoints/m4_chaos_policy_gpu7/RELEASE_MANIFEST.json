@@ -1,0 +1,21 @@
+{
+  "artifact": "m4_chaos_policy_gpu7",
+  "artifact_type": "PEFT LoRA adapter",
+  "status": "candidate",
+  "base_model": "Qwen/Qwen3-8B",
+  "parent_adapter": "m1_sft",
+  "training_dataset": "a100_chaos_policy",
+  "evaluation_dataset": "a100_chaos_policy_dev",
+  "data_boundary": "synthetic/silver only; do_not_eval=true; no Hidden, Gold, Regression, private data, or answer keys",
+  "training_device": "physical GPU 7 (NVIDIA A100-SXM4-80GB; CUDA_VISIBLE_DEVICES=7)",
+  "training_steps": 136,
+  "epochs": 2.0,
+  "learning_rate": 5e-5,
+  "effective_batch_size": 32,
+  "train_runtime_seconds": 236.0339,
+  "train_loss": 2.250633351943072,
+  "best_checkpoint_step": 100,
+  "best_eval_loss": 2.115617513656616,
+  "adapter_sha256": "4d0d32f5e69101faed50602309e315ae9d7916ec1815a9bc71d6d736b6226550",
+  "promotion_decision": "Candidate only; requires release Gate and downstream policy evaluation before production use."
+}
